@@ -115,12 +115,24 @@ def main(logfile, job):
         sys.exit()
 
     if job.config.MANUAL_WAIT:
-        logging.info("Waiting " + str(job.config.MANUAL_WAIT_TIME) + " seconds for manual override.")
+        logging.info("Waiting maximum of " + str(job.config.MANUAL_WAIT_TIME) + " seconds for manual override.")
         job.status = "waiting"
         db.session.commit()
-        time.sleep(job.config.MANUAL_WAIT_TIME)
-        db.session.refresh(job)
-        db.session.refresh(config)
+
+        waitUntil = datetime.datetime.now() + datetime.timedelta(seconds=job.config.MANUAL_WAIT_TIME)
+        while waitUntil < datetime.datetime.now():
+            time.sleep(10)
+
+            db.session.refresh(job)
+            db.session.refresh(config)
+
+            if job.status == "manually_updated":
+                logging.info("Title has been manually updated. Continuing process")
+                break
+        
+        if job.status != "manually_updated":
+            utils.notify(job, "ARM Notification", "Waited too long for manual update. Proceeding without a nice title")
+
         job.status = "active"
         db.session.commit()
 

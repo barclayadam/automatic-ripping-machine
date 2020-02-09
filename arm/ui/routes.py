@@ -134,6 +134,7 @@ def updatetitle():
     job.poster_url_manual = poster_url
     job.poster_url = poster_url
     job.hasnicetitle = True
+    job.status = "manually_updated"
     db.session.add(job)
     db.session.commit()
     flash('Title: {} ({}) was updated to {} ({})'.format(job.title_auto, job.year_auto, new_title, new_year), category='success')

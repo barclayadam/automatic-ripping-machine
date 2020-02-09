@@ -120,7 +120,8 @@ def main(logfile, job):
         db.session.commit()
 
         waitUntil = datetime.datetime.now() + datetime.timedelta(seconds=job.config.MANUAL_WAIT_TIME)
-        while waitUntil < datetime.datetime.now():
+        
+        while waitUntil > datetime.datetime.now():
             time.sleep(10)
 
             db.session.refresh(job)

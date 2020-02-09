@@ -208,13 +208,13 @@ def callwebservice(job, omdb_api_key, dvd_title, year=""):
     """
 
     if job.config.VIDEOTYPE == "auto":
-        strurl = "http://www.omdbapi.com/?t={1}&y={2}&plot=short&r=json&apikey={0}".format(omdb_api_key, dvd_title, year)
-        logging.debug("http://www.omdbapi.com/?t={1}&y={2}&plot=short&r=json&apikey={0}".format("key_hidden", dvd_title, year))
+        strurl = "http://www.omdbapi.com/?t={1}&plot=short&r=json&apikey={0}".format(omdb_api_key, dvd_title)
+        logging.debug("http://www.omdbapi.com/?t={1}&plot=short&r=json&apikey={0}".format("key_hidden", dvd_title))
     else:
-        strurl = "http://www.omdbapi.com/?t={1}&y={2}&type={3}&plot=short&r=json&apikey={0}".format(omdb_api_key, dvd_title, year, job.config.VIDEOTYPE)
-        logging.debug("http://www.omdbapi.com/?t={1}&y={2}&type={3}&plot=short&r=json&apikey={0}".format("key_hidden", dvd_title, year, job.config.VIDEOTYPE))
+        strurl = "http://www.omdbapi.com/?t={1}&type={2}&plot=short&r=json&apikey={0}".format(omdb_api_key, dvd_title, job.config.VIDEOTYPE)
+        logging.debug("http://www.omdbapi.com/?t={1}&type={2}&plot=short&r=json&apikey={0}".format("key_hidden", dvd_title, job.config.VIDEOTYPE))
 
-    logging.debug("***Calling webservice with Title: " + dvd_title + " and Year: " + year)
+    logging.debug("***Calling webservice with Title: " + dvd_title)
     try:
         # strurl = "http://www.omdbapi.com/?t={1}&y={2}&plot=short&r=json&apikey={0}".format(omdb_api_key, dvd_title, year)
         # logging.debug("http://www.omdbapi.com/?t={1}&y={2}&plot=short&r=json&apikey={0}".format("key_hidden", dvd_title, year))

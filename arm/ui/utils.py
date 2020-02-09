@@ -50,8 +50,7 @@ def call_omdb_api(title=None, year=None, imdbID=None, plot="short"):
     elif title:
         # try:
         title = urllib.parse.quote(title)
-        year = urllib.parse.quote(year)
-        strurl = "http://www.omdbapi.com/?s={1}&y={2}&plot={3}&r=json&apikey={0}".format(omdb_api_key, title, year, plot)
+        strurl = "http://www.omdbapi.com/?s={1}&plot={2}&r=json&apikey={0}".format(omdb_api_key, title, plot)
     else:
         print("no params")
         return(None)

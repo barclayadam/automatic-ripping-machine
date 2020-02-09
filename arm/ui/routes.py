@@ -73,9 +73,9 @@ def submitrip():
     form = TitleSearchForm(obj=job)
     if form.validate_on_submit():
         form.populate_obj(job)
-        flash('Search for {}, year={}'.format(form.title.data, form.year.data), category='success')
+        flash('Search for {}'.format(form.title.data), category='success')
         # dvd_info = call_omdb_api(form.title.data, form.year.data)
-        return redirect(url_for('list_titles', title=form.title.data, year=form.year.data, job_id=job_id))
+        return redirect(url_for('list_titles', title=form.title.data, job_id=job_id))
         # return render_template('list_titles.html', results=dvd_info, job_id=job_id)
         # return redirect('/gettitle', title=form.title.data, year=form.year.data)
     return render_template('titlesearch.html', title='Update Title', form=form)
@@ -99,9 +99,8 @@ def changeparams():
 @app.route('/list_titles')
 def list_titles():
     title = request.args.get('title').strip()
-    year = request.args.get('year').strip()
     job_id = request.args.get('job_id')
-    dvd_info = call_omdb_api(title, year)
+    dvd_info = call_omdb_api(title)
     return render_template('list_titles.html', results=dvd_info, job_id=job_id)
 
 

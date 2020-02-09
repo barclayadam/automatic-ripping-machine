@@ -89,51 +89,11 @@ def clean_for_filename(string):
 def identify_dvd(job):
     """ Calculates CRC64 for the DVD and calls Windows Media
         Metaservices and returns the Title and year of DVD """
-    logging.debug(str(job))
+        
+    logging.debug("WindowsMedia web service is non operational. Guessing title")
 
-    try:
-        crc64 = pydvdid.compute(str(job.mountpoint))
-    except pydvdid.exceptions.PydvdidException as e:
-        logging.error("Pydvdid failed with the error: " + str(e))
-        return False
-
-    logging.info("DVD CRC64 hash is: " + str(crc64))
-    job.crc_id = str(crc64)
-    urlstring = "http://metaservices.windowsmedia.com/pas_dvd_B/template/GetMDRDVDByCRC.xml?CRC={0}".format(str(crc64))
-    logging.debug(urlstring)
-
-    try:
-        dvd_info_xml = urllib.request.urlopen(
-            "http://metaservices.windowsmedia.com/pas_dvd_B/template/GetMDRDVDByCRC.xml?CRC={0}".
-            format(crc64)).read()
-    except OSError as e:
-        dvd_info_xml = False
-        dvd_title = "not_identified"
-        dvd_release_date = "0000"
-        logging.error("Failed to reach windowsmedia web service.  Error number is: " + str(e.errno))
-        # return False
-
-    try:
-        if not dvd_info_xml:
-            pass
-        else:
-            doc = xmltodict.parse(dvd_info_xml)
-            dvd_title = doc['METADATA']['MDR-DVD']['dvdTitle']
-            dvd_release_date = doc['METADATA']['MDR-DVD']['releaseDate']
-            dvd_title = dvd_title.strip()
-            dvd_title = clean_for_filename(dvd_title)
-            if dvd_release_date is not None:
-                dvd_release_date = dvd_release_date.split()[0]
-            else:
-                dvd_release_date = ""
-    except KeyError:
-        dvd_title = "not_identified"
-        dvd_release_date = "0000"
-        logging.error("Windows Media request returned no result.  Likely the DVD is not in their database.")
-        # return False
-
-    job.title = job.title_auto = dvd_title
-    job.year = job.year_auto = dvd_release_date
+    job.title = job.title_auto = job.label
+    job.year = job.year_auto = "0000"
     db.session.commit()
 
     return True

@@ -122,7 +122,7 @@ def main(logfile, job):
         db.session.commit()
         
         while waitUntil > datetime.datetime.now():
-            time.sleep(10)
+            time.sleep(1)
 
             db.session.refresh(job)
             db.session.refresh(config)

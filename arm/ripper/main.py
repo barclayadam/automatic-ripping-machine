@@ -130,9 +130,9 @@ def main(logfile, job):
             if job.status == "manually_updated":
                 logging.info("Title has been manually updated. Continuing process")
                 break
-            else 
+            else: 
                 logging.info("No manual input yet...")
-        
+
         if job.status != "manually_updated":
             logging.info("Waited too long for manual update. Proceeding without a nice title")
             utils.notify(job, "ARM Notification", "Waited too long for manual update. Proceeding without a nice title")

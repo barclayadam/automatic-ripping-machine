@@ -92,7 +92,7 @@ def identify_dvd(job):
         
     logging.debug("WindowsMedia web service is non operational. Guessing title")
 
-    job.title = job.title_auto = job.label
+    job.title = job.title_auto = job.label.replace('_', ' ').title().strip()
     job.year = job.year_auto = "0000"
     db.session.commit()
 

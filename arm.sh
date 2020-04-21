@@ -28,7 +28,7 @@ cd /opt
 sudo mkdir arm
 sudo chown arm:arm arm
 sudo chmod 775 arm
-sudo git clone -b v2.1_dev https://github.com/emmakat/automatic-ripping-machine.git arm
+sudo git clone -b emmakat https://github.com/emmakat/automatic-ripping-machine.git arm
 sudo chown -R arm:arm arm
 cd arm
 # TODO: Remove below line before merging to master

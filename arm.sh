@@ -1,5 +1,5 @@
 #!/bin/bash
-trap "set +x; sleep 5; set -x" DEBUG
+#trap "set +x; sleep 5; set -x" DEBUG
 
 sudo groupadd arm
 sudo useradd -m arm -g arm -G cdrom
@@ -25,7 +25,6 @@ sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 sudo apt install -y default-jre-headless
 
 cd /opt
-sudo rm -r arm
 sudo mkdir arm
 sudo chown arm:arm arm
 sudo chmod 775 arm
@@ -37,9 +36,8 @@ sudo pip3 install -r requirements.txt
 sudo ln -sfn /opt/arm/setup/51-automedia.rules /lib/udev/rules.d/
 sudo ln -sfn /opt/arm/setup/.abcde.conf /home/arm/
 sudo cp docs/arm.yaml.sample arm.yaml
-sudo rm -r /etc/arm/
-sudo mkdir /etc/arm/
+mkdir /etc/arm/
 sudo ln -sfn /opt/arm/arm.yaml /etc/arm/
-sudo rm -r /home/arm/.MakeMKV .makemkv
 sudo mkdir /home/arm/.MakeMKV
-sudo cp docs/settings.conf /home/arm/.MakeMKV/settings.conf
+sudo cp docs/settings.conf /home/arm/.MakeMKV settings.conf
+sudo apt autoremove

@@ -25,6 +25,7 @@ sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 sudo apt install -y default-jre-headless
 
 cd /opt
+sudo rm -r arm
 sudo mkdir arm
 sudo chown arm:arm arm
 sudo chmod 775 arm

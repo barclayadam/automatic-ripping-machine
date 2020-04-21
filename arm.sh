@@ -33,10 +33,10 @@ sudo chown -R arm:arm arm
 cd arm
 # TODO: Remove below line before merging to master
 sudo pip3 install -r requirements.txt 
-sudo ln -s /opt/arm/setup/51-automedia.rules /lib/udev/rules.d/
-sudo ln -s /opt/arm/setup/.abcde.conf /home/arm/
+sudo ln -sfn /opt/arm/setup/51-automedia.rules /lib/udev/rules.d/
+sudo ln -sfn /opt/arm/setup/.abcde.conf /home/arm/
 sudo cp docs/arm.yaml.sample arm.yaml
 sudo mkdir /etc/arm/
-sudo ln -s /opt/arm/arm.yaml /etc/arm/
+sudo ln -sfn /opt/arm/arm.yaml /etc/arm/
 sudo mkdir /home/arm/.makeMKV
 sudo cp docs/settings.conf /home/arm/.MakeMKV/settings.conf

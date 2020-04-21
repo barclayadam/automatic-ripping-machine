@@ -37,7 +37,9 @@ sudo pip3 install -r requirements.txt
 sudo ln -sfn /opt/arm/setup/51-automedia.rules /lib/udev/rules.d/
 sudo ln -sfn /opt/arm/setup/.abcde.conf /home/arm/
 sudo cp docs/arm.yaml.sample arm.yaml
+sudo rm -r /etc/arm/
 sudo mkdir /etc/arm/
 sudo ln -sfn /opt/arm/arm.yaml /etc/arm/
-sudo mkdir /home/arm/.makeMKV
+sudo rm -r /home/arm/.MakeMKV .makemkv
+sudo mkdir /home/arm/.MakeMKV
 sudo cp docs/settings.conf /home/arm/.MakeMKV/settings.conf

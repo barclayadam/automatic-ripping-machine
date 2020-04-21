@@ -111,11 +111,11 @@ cd /opt
 sudo mkdir arm
 sudo chown arm:arm arm
 sudo chmod 775 arm
-sudo git clone https://github.com/automatic-ripping-machine/automatic-ripping-machine.git arm
+sudo git clone -b emmakat https://github.com/emmakat/automatic-ripping-machine.git arm
 sudo chown -R arm:arm arm
 cd arm
 # TODO: Remove below line before merging to master
-git checkout v2.1_dev
+#removing this line - sudo git checkout v2.1_dev
 sudo pip3 install -r requirements.txt 
 sudo ln -s /opt/arm/setup/51-automedia.rules /lib/udev/rules.d/
 sudo ln -s /opt/arm/setup/.abcde.conf /home/arm/

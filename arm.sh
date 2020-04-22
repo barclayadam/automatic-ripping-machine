@@ -3,7 +3,7 @@
 
 sudo groupadd arm
 sudo useradd -m arm -g arm -G cdrom
-echo "arm:arm" | chpasswd
+#do sudo passwd arm when done with this installation
 
 sudo apt-get install -y git
 sudo add-apt-repository -y ppa:heyarje/makemkv-beta
@@ -38,6 +38,8 @@ sudo ln -sfn /opt/arm/setup/.abcde.conf /home/arm/
 sudo cp docs/arm.yaml.sample arm.yaml
 mkdir /etc/arm/
 sudo ln -sfn /opt/arm/arm.yaml /etc/arm/
-sudo mkdir /home/arm/.MakeMKV
-sudo cp docs/settings.conf /home/arm/.MakeMKV settings.conf
+cd /home/arm
+sudo mkdir .MakeMKV
+cd .MakeMKV
+sudo cp docs/settings.conf settings.conf
 sudo apt autoremove
